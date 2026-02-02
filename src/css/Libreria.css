@@ -1,0 +1,5 @@
+.libreria__libro-portada {
+  height: 300px;
+  object-fit: cover;
+  cursor: pointer;
+}

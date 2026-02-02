@@ -9,12 +9,12 @@ import {
   Spinner,
   Alert,
   Modal,
-  Badge,
 } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
 import VistaLibro from "../components/VistaLibro";
 import MySwal from "../utils/swal";
+import "../css/Libreria.css";
 
 const Libreria = () => {
   const [categoriaSeleccionada, setCategoriaSeleccionada] = useState(null);
@@ -27,7 +27,7 @@ const Libreria = () => {
     cargando: cargandoCats,
     error: errorCats,
   } = useFetch(
-    "https://mock.apidog.com/m1/1188124-1182752-default/api/categorias"
+    "https://mock.apidog.com/m1/1188124-1182752-default/api/categorias",
   );
 
   const urlLibros = categoriaSeleccionada
@@ -137,11 +137,7 @@ const Libreria = () => {
                         variant="top"
                         src={libro.portada}
                         alt={libro.titulo}
-                        style={{
-                          height: "300px",
-                          objectFit: "cover",
-                          cursor: "pointer",
-                        }}
+                        className="libreria__libro-portada"
                         onClick={() => verDetalle(libro.id)}
                       />
                     )}

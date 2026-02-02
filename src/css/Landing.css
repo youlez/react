@@ -1,0 +1,5 @@
+.landing__libro-portada {
+  height: 400px;
+  object-fit: cover;
+  cursor: pointer;
+}

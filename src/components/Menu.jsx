@@ -24,7 +24,6 @@ const Menu = () => {
               src={logo}
               alt="Nexus"
               height="40"
-              style={{ cursor: "pointer" }}
             />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />

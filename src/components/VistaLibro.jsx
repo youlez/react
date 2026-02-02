@@ -2,6 +2,7 @@ import { Spinner, Alert, Row, Col, Button } from "react-bootstrap";
 import useFetch from "../hooks/useFetch";
 import { useCarrito } from "../context/CarritoContext";
 import MySwal from "../utils/swal";
+import "../css/VistaLibro.css";
 
 const VistaLibro = ({ id, modoCompleto = false, onAgregarCarrito }) => {
   const { agregarAlCarrito } = useCarrito();
@@ -74,12 +75,7 @@ const VistaLibro = ({ id, modoCompleto = false, onAgregarCarrito }) => {
           <img
             src={libroData.portada}
             alt={libroData.titulo}
-            className="img-fluid rounded"
-            style={{
-              maxHeight: modoCompleto ? "400px" : "300px",
-              width: "100%",
-              objectFit: "contain",
-            }}
+            className={`img-fluid rounded detalle-libro__portada ${modoCompleto ? 'detalle-libro__portada--completo' : ''}`}
           />
         )}
       </Col>
@@ -88,7 +84,7 @@ const VistaLibro = ({ id, modoCompleto = false, onAgregarCarrito }) => {
         {libroData.autor && <h5 className="text-muted">{libroData.autor}</h5>}
 
         {libroData.descripcion && (
-          <p className="mt-3" style={{ textAlign: "justify" }}>
+          <p className="mt-3 detalle-libro__descripcion">
             {libroData.descripcion}
           </p>
         )}

@@ -1,20 +1,34 @@
-import { Container, Row, Col, Card, Spinner, Alert, Badge } from "react-bootstrap";
+import {
+  Container,
+  Row,
+  Col,
+  Card,
+  Spinner,
+  Alert,
+  Badge,
+} from "react-bootstrap";
 import { useAuth } from "../context/AuthContext";
 import { useCompras } from "../context/ComprasContext";
 import useFetch from "../hooks/useFetch";
+import "../css/MisCompras.css";
 
 const MisCompras = () => {
   const { usuario } = useAuth();
   const { comprasLocales } = useCompras();
 
-  const { data: comprasServidor, cargando, error } = useFetch(
-    usuario ? `https://mock.apidog.com/m1/1188124-1182752-default/api/usuarios/${usuario.id}/compras` : null
+  const {
+    data: comprasServidor,
+    cargando,
+    error,
+  } = useFetch(
+    usuario
+      ? `https://mock.apidog.com/m1/1188124-1182752-default/api/usuarios/${usuario.id}/compras`
+      : null,
   );
 
-  const todasLasCompras = [
-    ...comprasLocales,
-    ...(comprasServidor || []),
-  ].sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
+  const todasLasCompras = [...comprasLocales, ...(comprasServidor || [])].sort(
+    (a, b) => new Date(b.fecha) - new Date(a.fecha),
+  );
 
   if (cargando) {
     return (
@@ -27,7 +41,9 @@ const MisCompras = () => {
   if (error) {
     return (
       <Container className="mt-5">
-        <Alert variant="warning">Error al cargar el historial de compras.</Alert>
+        <Alert variant="warning">
+          Error al cargar el historial de compras.
+        </Alert>
       </Container>
     );
   }
@@ -61,24 +77,30 @@ const MisCompras = () => {
               </Card.Header>
 
               <Card.Body>
-                {compra.items && compra.items.map((item, idx) => (
-                  <div key={idx} className={`d-flex align-items-center ${idx !== 0 ? 'mt-3' : ''}`}>
-                    <img
-                      src={item.portada}
-                      alt={item.titulo}
-                      style={{ width: "50px", height: "75px", objectFit: "cover" }}
-                      className="rounded me-3 shadow-sm"
-                    />
-                    <div>
-                      <p className="mb-0 fw-bold">{item.titulo}</p>
-                      <p className="mb-0 text-muted small">{item.autor}</p>
-                      <small>
-                        Cantidad: <strong>{item.cantidad}</strong> • 
-                        Unitario: {Number(item.precio).toLocaleString("es-ES", { style: "currency", currency: "EUR" })}
-                      </small>
+                {compra.items &&
+                  compra.items.map((item, idx) => (
+                    <div
+                      key={idx}
+                      className={`d-flex align-items-center ${idx !== 0 ? "mt-3" : ""}`}
+                    >
+                      <img
+                        src={item.portada}
+                        alt={item.titulo}
+                        className="rounded me-3 shadow-sm mis-compras__item-miniatura"
+                      />
+                      <div>
+                        <p className="mb-0 fw-bold">{item.titulo}</p>
+                        <p className="mb-0 text-muted small">{item.autor}</p>
+                        <small>
+                          Cantidad: <strong>{item.cantidad}</strong> • Unitario:{" "}
+                          {Number(item.precio).toLocaleString("es-ES", {
+                            style: "currency",
+                            currency: "EUR",
+                          })}
+                        </small>
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
               </Card.Body>
 
               <Card.Footer className="bg-white d-flex justify-content-end align-items-center">

@@ -1,0 +1,13 @@
+.coworking__espacio-card {
+  cursor: default;
+  transition: none;
+}
+
+.coworking__espacio-card--interactivo {
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.coworking__espacio-card--interactivo:hover {
+  transform: scale(1.02);
+}

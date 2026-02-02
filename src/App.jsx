@@ -25,10 +25,10 @@ function App() {
         <ComprasProvider>
           <ReservasProvider>
             <Router>
-              <header>
+              <header className="fixed-top">
                 <Menu />
               </header>
-              <Container className="mt-5 pt-5 cuerpo">
+              <Container className="mt-5 pt-5 app__cuerpo">
                 <Routes>
                   {/* RUTAS PÚBLICAS */}
                   <Route path="/" element={<Landing />} />

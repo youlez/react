@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
 import VistaLibro from "../components/VistaLibro";
 import MySwal from "../utils/swal";
+import "../css/Landing.css";
 
 const Landing = () => {
   const {
@@ -67,11 +68,7 @@ const Landing = () => {
                     variant="top"
                     src={libro.portada}
                     alt={libro.titulo}
-                    style={{
-                      height: "400px",
-                      objectFit: "cover",
-                      cursor: "pointer",
-                    }}
+                    className="landing__libro-portada"
                     onClick={() => verDetalle(libro.id)}
                   />
                 )}

@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { Container, Row, Col, Card, Spinner, Alert } from "react-bootstrap";
 import useFetch from "../hooks/useFetch";
+import "../css/Coworking.css";
 
 const Coworking = () => {
   const {
@@ -68,23 +69,11 @@ const Coworking = () => {
                 md={obtenerAnchoColumna(espacio.nombre)}
               >
                 <Card
-                  className={`h-100 shadow-sm border-0 ${!recepcion ? "card-hover" : ""}`}
-                  style={{
-                    cursor: recepcion ? "default" : "pointer",
-                    transition: recepcion ? "none" : "transform 0.2s",
-                  }}
+                  className={`h-100 shadow-sm border-0 coworking__espacio-card ${!recepcion ? "coworking__espacio-card--interactivo" : ""}`}
                   onClick={() => !recepcion && irADetalle(espacio.id)}
-                  onMouseEnter={(e) =>
-                    !recepcion && (e.currentTarget.style.transform = "scale(1.02)")
-                  }
-                  onMouseLeave={(e) =>
-                    !recepcion && (e.currentTarget.style.transform = "scale(1)")
-                  }
                 >
                   <Card.Body className="d-flex flex-column justify-content-center text-center p-3">
-                    <h5 className="fw-bold mb-2">
-                      {espacio.nombre}
-                    </h5>
+                    <h5 className="fw-bold mb-2">{espacio.nombre}</h5>
 
                     <div className="small text-muted mb-2">
                       <i className="bi bi-geo-alt-fill text-danger me-1" />
