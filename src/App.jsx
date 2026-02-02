@@ -1,12 +1,13 @@
 // src/App.jsx
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { AuthProvider } from './context/AuthContext';
-import ProtectedRoute from './components/ProtectedRoute';
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { AuthProvider } from "./context/AuthContext";
+import ProtectedRoute from "./components/ProtectedRoute";
 
-import Menu from './components/Menu';
-import MisCompras from './pages/MisCompras';
-import { Container } from 'react-bootstrap';
+import Menu from "./components/Menu";
+import Landing from "./views/Landing";
+import MisCompras from "./views/MisCompras";
+import { Container } from "react-bootstrap";
 
 function App() {
   return (
@@ -14,21 +15,20 @@ function App() {
       <Router>
         <Menu />
         <Container className="mt-4">
-        <Routes>
-          {/* RUTAS PÚBLICAS */}          
-          <Route path="/"/>
+          <Routes>
+            {/* RUTAS PÚBLICAS */}
+            <Route path="/" element={<Landing />} />
 
-          {/* RUTAS PROTEGIDAS */}
-          <Route
-            path="/mis-compras"
-            element={
-              <ProtectedRoute>
-                <MisCompras />
-              </ProtectedRoute>
-            }
-          />
-          
-        </Routes>
+            {/* RUTAS PROTEGIDAS */}
+            <Route
+              path="/mis-compras"
+              element={
+                <ProtectedRoute>
+                  <MisCompras />
+                </ProtectedRoute>
+              }
+            />
+          </Routes>
         </Container>
       </Router>
     </AuthProvider>
