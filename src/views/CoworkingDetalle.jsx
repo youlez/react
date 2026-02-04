@@ -1,4 +1,3 @@
-// src/pages/CoworkingDetalle.jsx
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Container, Spinner, Alert, Modal } from "react-bootstrap";
@@ -32,13 +31,11 @@ const CoworkingDetalle = () => {
   const precioReserva =
     espacioData && espacioData.length > 0 ? espacioData[0].precio : 0;
 
-  // ⬅️ ACTUALIZADO: Recalcular cupos según tipo de espacio
   useEffect(() => {
     if (!espacioData || espacioData.length === 0) return;
 
     const espacio = espacioData[0];
 
-    // Base = horario que viene del servidor (con cupos iniciales por slot)
     const nuevoHorario = JSON.parse(JSON.stringify(espacio.horario));
 
     const reservasEsteEspacio = reservasLocales.filter(
@@ -57,17 +54,15 @@ const CoworkingDetalle = () => {
         };
 
         if (espacio.tipo === "grupal") {
-          const cuposBase = slotBase.cupos ?? 0; // IMPORTANTÍSIMO: usar cupos del slot
+          const cuposBase = slotBase.cupos ?? 0;
           const cuposRestantes = Math.max(cuposBase - reservasEnSlot, 0);
 
-          // OJO: en tu UI "disponible" es estado === false
           nuevoHorario[dia][hora] = {
             ...slotBase,
             cupos: cuposRestantes,
-            estado: cuposRestantes === 0, // true => ocupado (porque disponible = false)
+            estado: cuposRestantes === 0,
           };
         } else {
-          // Individual: si existe al menos 1 reserva en ese slot -> ocupado
           if (reservasEnSlot > 0) {
             nuevoHorario[dia][hora] = {
               ...slotBase,
@@ -151,7 +146,6 @@ const CoworkingDetalle = () => {
 
       const espacio = espacioData[0];
 
-      // ⬅️ CORREGIDO: Usar los cupos del slot original
       setHorarioLocal((prevHorario) => {
         const nuevoHorario = JSON.parse(JSON.stringify(prevHorario));
         const dia = reservaSeleccionada.dia;
@@ -159,24 +153,21 @@ const CoworkingDetalle = () => {
 
         if (!nuevoHorario[dia]) return prevHorario;
 
-        // ✅ Obtener el slot actual con sus cupos reales
         const slotActual = nuevoHorario[dia][hora];
 
         if (espacio.tipo === "grupal") {
-          // ✅ Usar los cupos que YA tiene el slot (no la capacidad del espacio)
           const cuposActuales = slotActual?.cupos ?? 0;
           const nuevosCupos = Math.max(cuposActuales - 1, 0);
 
           console.log(`Cupos antes: ${cuposActuales}, después: ${nuevosCupos}`);
 
           nuevoHorario[dia][hora] = {
-            estado: nuevosCupos === 0, // true = ocupado
+            estado: nuevosCupos === 0, 
             cupos: nuevosCupos,
           };
         } else {
-          // ESPACIO INDIVIDUAL: marcar como ocupado inmediatamente
           nuevoHorario[dia][hora] = {
-            estado: true, // true = ocupado
+            estado: true, 
             cupos: 0,
           };
         }
