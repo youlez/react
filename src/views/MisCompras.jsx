@@ -5,7 +5,6 @@ import {
   Card,
   Spinner,
   Alert,
-  Badge,
 } from "react-bootstrap";
 import { useAuth } from "../context/AuthContext";
 import { useCompras } from "../context/ComprasContext";
