@@ -1,11 +1,4 @@
-import {
-  Container,
-  Row,
-  Col,
-  Card,
-  Spinner,
-  Alert,
-} from "react-bootstrap";
+import { Container, Row, Col, Card, Spinner, Alert } from "react-bootstrap";
 import { useAuth } from "../context/AuthContext";
 import { useCompras } from "../context/ComprasContext";
 import useFetch from "../hooks/useFetch";
