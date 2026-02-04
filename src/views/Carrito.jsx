@@ -12,7 +12,7 @@ import {
 import { Link, useNavigate } from "react-router-dom";
 import { useCarrito } from "../context/CarritoContext";
 import { useAuth } from "../context/AuthContext";
-import { useCompras } from "../context/ComprasContext"; // Importar
+import { useCompras } from "../context/ComprasContext";
 import Login from "../components/Login";
 import CheckoutForm from "../components/CheckoutForm";
 import MySwal from "../utils/swal";
@@ -26,7 +26,7 @@ const Carrito = () => {
     vaciarCarrito,
     totalPrecio,
   } = useCarrito();
-  const { agregarCompra } = useCompras(); // Obtener función
+  const { agregarCompra } = useCompras();
   const navigate = useNavigate();
 
   const [mostrarLogin, setMostrarLogin] = useState(false);
