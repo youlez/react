@@ -1,3 +1,4 @@
+import React from "react";
 import { Spinner, Alert, Row, Col, Button } from "react-bootstrap";
 import useFetch from "../hooks/useFetch";
 import { useCarrito } from "../context/CarritoContext";
@@ -12,7 +13,7 @@ const VistaLibro = ({ id, modoCompleto = false, onAgregarCarrito }) => {
     cargando: cargandoLibro,
     error: errorLibro,
   } = useFetch(
-    `https://mock.apidog.com/m1/1188124-1182752-default/api/libros/${id}`,
+    `https://mock.apidog.com/m1/1188124-1182752-default/api/libros/${id}`
   );
 
   const {
@@ -20,7 +21,7 @@ const VistaLibro = ({ id, modoCompleto = false, onAgregarCarrito }) => {
     cargando: cargandoCats,
     error: errorCats,
   } = useFetch(
-    `https://mock.apidog.com/m1/1188124-1182752-default/api/categorias`,
+    `https://mock.apidog.com/m1/1188124-1182752-default/api/categorias`
   );
 
   if (cargandoLibro || cargandoCats) {
@@ -45,7 +46,7 @@ const VistaLibro = ({ id, modoCompleto = false, onAgregarCarrito }) => {
 
   const libroData = libro[0];
   const categoriaEncontrada = categorias?.find(
-    (cat) => cat.id === libroData.categoriaId,
+    (cat) => cat.id === libroData.categoriaId
   );
   const nombreCategoria = categoriaEncontrada
     ? categoriaEncontrada.nombre
@@ -75,7 +76,9 @@ const VistaLibro = ({ id, modoCompleto = false, onAgregarCarrito }) => {
           <img
             src={libroData.portada}
             alt={libroData.titulo}
-            className={`img-fluid rounded detalle-libro__portada ${modoCompleto ? 'detalle-libro__portada--completo' : ''}`}
+            className={`img-fluid rounded detalle-libro__portada ${
+              modoCompleto ? "detalle-libro__portada--completo" : ""
+            }`}
           />
         )}
       </Col>

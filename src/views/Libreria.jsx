@@ -1,3 +1,4 @@
+import React from "react";
 import { useState } from "react";
 import {
   Container,
@@ -27,7 +28,7 @@ const Libreria = () => {
     cargando: cargandoCats,
     error: errorCats,
   } = useFetch(
-    "https://mock.apidog.com/m1/1188124-1182752-default/api/categorias",
+    "https://mock.apidog.com/m1/1188124-1182752-default/api/categorias"
   );
 
   const urlLibros = categoriaSeleccionada
@@ -67,8 +68,9 @@ const Libreria = () => {
 
   if (cargandoLibros || cargandoCats) {
     return (
-      <div className="d-flex justify-content-center my-5">
+      <div className="d-flex justify-content-center my-5" role="status">
         <Spinner animation="border" variant="primary" />
+        <span className="visually-hidden">Cargando...</span>
       </div>
     );
   }

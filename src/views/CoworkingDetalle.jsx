@@ -1,3 +1,4 @@
+import React from "react";
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Container, Spinner, Alert, Modal } from "react-bootstrap";
@@ -20,7 +21,7 @@ const CoworkingDetalle = () => {
     cargando,
     error,
   } = useFetch(
-    `https://mock.apidog.com/m1/1188124-1182752-default/api/espacios?id=${id}`,
+    `https://mock.apidog.com/m1/1188124-1182752-default/api/espacios?id=${id}`
   );
 
   const [mostrarLogin, setMostrarLogin] = useState(false);
@@ -39,13 +40,13 @@ const CoworkingDetalle = () => {
     const nuevoHorario = JSON.parse(JSON.stringify(espacio.horario));
 
     const reservasEsteEspacio = reservasLocales.filter(
-      (r) => String(r.espacioId) === String(id),
+      (r) => String(r.espacioId) === String(id)
     );
 
     Object.keys(nuevoHorario).forEach((dia) => {
       Object.keys(nuevoHorario[dia]).forEach((hora) => {
         const reservasEnSlot = reservasEsteEspacio.filter(
-          (r) => r.dia === dia && r.hora === hora,
+          (r) => r.dia === dia && r.hora === hora
         ).length;
 
         const slotBase = nuevoHorario[dia][hora] || {
@@ -121,7 +122,9 @@ const CoworkingDetalle = () => {
         nuevasHoras = 1;
       }
 
-      const horaFin = `${nuevasHoras}:${minutos < 10 ? "0" + minutos : minutos} ${nuevoPeriodo}`;
+      const horaFin = `${nuevasHoras}:${
+        minutos < 10 ? "0" + minutos : minutos
+      } ${nuevoPeriodo}`;
 
       const response = await fetch(
         "https://mock.apidog.com/m1/1188124-1182752-default/api/reservas",
@@ -137,7 +140,7 @@ const CoworkingDetalle = () => {
             horaInicio: reservaSeleccionada.hora,
             horaFin: horaFin,
           }),
-        },
+        }
       );
 
       if (!response.ok) {
@@ -162,12 +165,12 @@ const CoworkingDetalle = () => {
           console.log(`Cupos antes: ${cuposActuales}, después: ${nuevosCupos}`);
 
           nuevoHorario[dia][hora] = {
-            estado: nuevosCupos === 0, 
+            estado: nuevosCupos === 0,
             cupos: nuevosCupos,
           };
         } else {
           nuevoHorario[dia][hora] = {
-            estado: true, 
+            estado: true,
             cupos: 0,
           };
         }
@@ -207,8 +210,14 @@ const CoworkingDetalle = () => {
 
   if (cargando) {
     return (
-      <div className="d-flex justify-content-center my-5">
+      <div
+        className="d-flex justify-content-center my-5"
+        role="status"
+        aria-live="polite"
+        aria-busy="true"
+      >
         <Spinner animation="border" variant="primary" />
+        <span className="visually-hidden">Cargando...</span>
       </div>
     );
   }

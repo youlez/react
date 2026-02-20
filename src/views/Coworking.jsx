@@ -1,3 +1,4 @@
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Container, Row, Col, Card, Spinner, Alert } from "react-bootstrap";
 import useFetch from "../hooks/useFetch";
@@ -9,7 +10,7 @@ const Coworking = () => {
     cargando,
     error,
   } = useFetch(
-    "https://mock.apidog.com/m1/1188124-1182752-default/api/espacios",
+    "https://mock.apidog.com/m1/1188124-1182752-default/api/espacios"
   );
 
   const navigate = useNavigate();
@@ -32,8 +33,14 @@ const Coworking = () => {
 
   if (cargando) {
     return (
-      <div className="d-flex justify-content-center my-5">
+      <div
+        className="d-flex justify-content-center my-5"
+        role="status"
+        aria-live="polite"
+        aria-busy="true"
+      >
         <Spinner animation="border" variant="primary" />
+        <span className="visually-hidden">Cargando...</span>
       </div>
     );
   }
@@ -57,19 +64,17 @@ const Coworking = () => {
         necesidades en nuestra zona de estudio, salas de reuniones o áreas
         comunes para reservar el día y la hora que prefieras.
       </p>
-      <div className="p-3 rounded-4 shadow-sm bg-info">
-        <Row className="g-3 justify-content-center">
+      <div className="p-3 rounded-4 shadow-sm bg-info overflow-auto">
+        <Row className="g-3 justify-content-center coworking__contenedor">
           {espacios?.map((espacio) => {
             const recepcion = esRecepcion(espacio.nombre);
 
             return (
-              <Col
-                key={espacio.id}
-                xs={12}
-                md={obtenerAnchoColumna(espacio.nombre)}
-              >
+              <Col key={espacio.id} xs={obtenerAnchoColumna(espacio.nombre)}>
                 <Card
-                  className={`h-100 shadow-sm border-0 coworking__espacio-card ${!recepcion ? "coworking__espacio-card--interactivo" : ""}`}
+                  className={`h-100 shadow-sm border-0 coworking__espacio-card ${
+                    !recepcion ? "coworking__espacio-card--interactivo" : ""
+                  }`}
                   onClick={() => !recepcion && irADetalle(espacio.id)}
                 >
                   <Card.Body className="d-flex flex-column justify-content-center text-center p-3">

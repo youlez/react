@@ -1,3 +1,4 @@
+import React from "react";
 import { useState } from "react";
 import { Row, Col, Card, Spinner, Alert, Button, Modal } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
@@ -12,7 +13,7 @@ const Landing = () => {
     cargando,
     error,
   } = useFetch(
-    "https://mock.apidog.com/m1/1188124-1182752-default/api/libros/mas-vendidos",
+    "https://mock.apidog.com/m1/1188124-1182752-default/api/libros/mas-vendidos"
   );
 
   const [showModal, setShowModal] = useState(false);
@@ -47,8 +48,12 @@ const Landing = () => {
       <h2 className="mb-4 text-center">Top 10 libros más vendidos</h2>
 
       {cargando && (
-        <div className="d-flex justify-content-center my-5">
+        <div
+          className="d-flex justify-content-center my-5"
+          role="status" // <--- Añade esto
+        >
           <Spinner animation="border" variant="primary" />
+          <span className="visually-hidden">Cargando...</span>{" "}
         </div>
       )}
 

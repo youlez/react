@@ -1,3 +1,4 @@
+import React from "react";
 import { useState } from "react";
 import { Form, Button, Row, Col } from "react-bootstrap";
 import MySwal from "../utils/swal";
@@ -41,10 +42,13 @@ const CheckoutForm = ({ totalPrecio, onPagoExitoso }) => {
   };
 
   return (
-    <Form onSubmit={pagar} className="mt-3">
+    <Form onSubmit={pagar} className="mt-3" noValidate>
+      {" "}
+      {/* Añade noValidate para que el test pueda probar tus validaciones manuales */}
       <h5 className="mb-3">Datos de pago</h5>
-
-      <Form.Group className="mb-3">
+      <Form.Group className="mb-3" controlId="titular">
+        {" "}
+        {/* Añade controlId */}
         <Form.Label>Titular</Form.Label>
         <Form.Control
           name="titular"
@@ -54,10 +58,11 @@ const CheckoutForm = ({ totalPrecio, onPagoExitoso }) => {
           required
         />
       </Form.Group>
-
       <Row>
         <Col md={8}>
-          <Form.Group className="mb-3">
+          <Form.Group className="mb-3" controlId="tarjeta">
+            {" "}
+            {/* Añade controlId */}
             <Form.Label>Número de tarjeta</Form.Label>
             <Form.Control
               name="tarjeta"
@@ -70,7 +75,9 @@ const CheckoutForm = ({ totalPrecio, onPagoExitoso }) => {
           </Form.Group>
         </Col>
         <Col md={2}>
-          <Form.Group className="mb-3">
+          <Form.Group className="mb-3" controlId="exp">
+            {" "}
+            {/* Añade controlId */}
             <Form.Label>Exp</Form.Label>
             <Form.Control
               name="exp"
@@ -82,7 +89,9 @@ const CheckoutForm = ({ totalPrecio, onPagoExitoso }) => {
           </Form.Group>
         </Col>
         <Col md={2}>
-          <Form.Group className="mb-3">
+          <Form.Group className="mb-3" controlId="cvv">
+            {" "}
+            {/* Añade controlId */}
             <Form.Label>CVV</Form.Label>
             <Form.Control
               name="cvv"
@@ -95,8 +104,9 @@ const CheckoutForm = ({ totalPrecio, onPagoExitoso }) => {
           </Form.Group>
         </Col>
       </Row>
-
-      <Form.Group className="mb-3">
+      <Form.Group className="mb-3" controlId="direccion">
+        {" "}
+        {/* Añade controlId */}
         <Form.Label>Dirección (opcional)</Form.Label>
         <Form.Control
           name="direccion"
@@ -105,7 +115,6 @@ const CheckoutForm = ({ totalPrecio, onPagoExitoso }) => {
           placeholder="Calle, número, ciudad"
         />
       </Form.Group>
-
       <Button type="submit" variant="success" size="lg" className="w-100">
         Pagar ahora
       </Button>

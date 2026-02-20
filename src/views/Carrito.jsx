@@ -1,3 +1,4 @@
+import React from "react";
 import { useEffect, useState } from "react";
 import {
   Container,
@@ -74,8 +75,8 @@ const Carrito = () => {
               libroId: item.id,
               cantidad: item.cantidad,
             }),
-          },
-        ),
+          }
+        )
       );
 
       const resultados = await Promise.all(promesas);
@@ -83,7 +84,7 @@ const Carrito = () => {
       const algunError = resultados.some((res) => !res.ok);
       if (algunError) {
         throw new Error(
-          "Hubo un problema registrando la compra en el servidor.",
+          "Hubo un problema registrando la compra en el servidor."
         );
       }
 

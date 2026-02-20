@@ -1,3 +1,4 @@
+import React from "react";
 import { Container, Row, Col, Card, Alert, Badge } from "react-bootstrap";
 import { useAuth } from "../context/AuthContext";
 import { useReservas } from "../context/ReservasContext";
@@ -61,7 +62,8 @@ const MisReservas = () => {
                     </p>
                     <p className="mb-1">
                       <i className="bi bi-clock me-2 text-warning"></i>
-                      <strong>Horario:</strong> {reserva.hora} - {reserva.horaFin}
+                      <strong>Horario:</strong> {reserva.hora} -{" "}
+                      {reserva.horaFin}
                     </p>
                     <Badge bg="success" className="mt-2">
                       Confirmada
@@ -73,7 +75,7 @@ const MisReservas = () => {
               <Card.Footer className="bg-white d-flex justify-content-end align-items-center">
                 <span className="me-2 text-muted">Total pagado:</span>
                 <h5 className="mb-0 text-success fw-bold">
-                  {(reserva.precio).toLocaleString("es-ES", {
+                  {reserva.precio.toLocaleString("es-ES", {
                     style: "currency",
                     currency: "EUR",
                   })}

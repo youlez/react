@@ -1,3 +1,4 @@
+import React from "react";
 import { Container, Row, Col, Card, Spinner, Alert } from "react-bootstrap";
 import { useAuth } from "../context/AuthContext";
 import { useCompras } from "../context/ComprasContext";
@@ -15,11 +16,11 @@ const MisCompras = () => {
   } = useFetch(
     usuario
       ? `https://mock.apidog.com/m1/1188124-1182752-default/api/usuarios/${usuario.id}/compras`
-      : null,
+      : null
   );
 
   const todasLasCompras = [...comprasLocales, ...(comprasServidor || [])].sort(
-    (a, b) => new Date(b.fecha) - new Date(a.fecha),
+    (a, b) => new Date(b.fecha) - new Date(a.fecha)
   );
 
   if (cargando) {
@@ -73,7 +74,9 @@ const MisCompras = () => {
                   compra.items.map((item, idx) => (
                     <div
                       key={idx}
-                      className={`d-flex align-items-center ${idx !== 0 ? "mt-3" : ""}`}
+                      className={`d-flex align-items-center ${
+                        idx !== 0 ? "mt-3" : ""
+                      }`}
                     >
                       <img
                         src={item.portada}

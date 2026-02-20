@@ -1,3 +1,7 @@
+.coworking__contenedor {
+  min-width: 920px;
+}
+
 .coworking__espacio-card {
   cursor: default;
   transition: none;

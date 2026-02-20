@@ -1,3 +1,4 @@
+import React from "react";
 import { useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import { Form, Button, Alert, Spinner } from "react-bootstrap";
@@ -33,7 +34,6 @@ const Login = ({ closeModal }) => {
             required
           />
         </Form.Group>
-
         <Form.Group className="mb-3" controlId="formPassword">
           <Form.Label>Contraseña</Form.Label>
           <Form.Control
@@ -51,7 +51,11 @@ const Login = ({ closeModal }) => {
           className="w-100"
           disabled={cargando}
         >
-          {cargando ? <Spinner animation="border" size="sm" /> : "Entrar"}
+          {cargando ? (
+            <Spinner animation="border" size="sm" data-testid="spinner" />
+          ) : (
+            "Entrar"
+          )}
         </Button>
       </Form>
       {error && (
