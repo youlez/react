@@ -6,6 +6,8 @@ import useFetch from "../hooks/useFetch";
 import VistaLibro from "../components/VistaLibro";
 import MySwal from "../utils/swal";
 import "../css/Landing.css";
+import bannerD from "../assets/banner-desktop.png";
+import bannerM from "../assets/banner-mobile.png";
 
 const Landing = () => {
   const {
@@ -48,15 +50,8 @@ const Landing = () => {
       {/* Banner */}
       <div className="banner mb-4">
         <picture>
-          <source
-            srcSet="/assets/banner-desktop.png"
-            media="(min-width: 386px)"
-          />
-          <img
-            src="/assets/banner-mobile.png"
-            alt="Banner"
-            className="img-fluid"
-          />
+          <source srcSet={bannerD} media="(min-width: 386px)" />
+          <img src={bannerM} alt="Banner" className="img-fluid" />
         </picture>
       </div>
       <hr></hr>
