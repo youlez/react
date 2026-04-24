@@ -5,6 +5,7 @@ import { useAuth } from "../context/AuthContext";
 import { useCarrito } from "../context/CarritoContext";
 import Login from "./Login";
 import logo from "../assets/logo.png";
+import "../css/Menu.css";
 
 const Menu = () => {
   const { usuario, logout } = useAuth();
@@ -20,12 +21,29 @@ const Menu = () => {
       <Navbar bg="info-subtle" variant="info-subtle" expand="lg">
         <Container>
           <Navbar.Brand as={Link} to="/">
-            <Image
-              src={logo}
-              alt="Nexus"
-              height="40"
-            />
+            <Image src={logo} alt="Nexus" height="40" />
           </Navbar.Brand>
+
+          <Nav className="d-lg-none align-items-center flex-row gap-2">
+            <Nav.Link
+              as={Link}
+              to="/carrito"
+              className="position-relative me-1"
+            >
+              <i className="bi bi-cart3 fs-5 text-primary"></i>
+              {totalItems > 0 && (
+                <Badge bg="danger" pill className="position-absolute top-0">
+                  {totalItems}
+                </Badge>
+              )}
+            </Nav.Link>
+            {usuario && (
+              <Navbar.Text className="me-3">
+                Hola, {usuario.nombre} {usuario.apellidos}
+              </Navbar.Text>
+            )}
+          </Nav>
+
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
@@ -57,11 +75,11 @@ const Menu = () => {
                 </>
               )}
             </Nav>
-            <Nav className="align-items-center">
+            <Nav className="align-items-lg-center">
               <Nav.Link
                 as={Link}
                 to="/carrito"
-                className="position-relative me-3"
+                className="position-relative me-3 d-none d-lg-block"
               >
                 <i className="bi bi-cart3 fs-5 text-primary"></i>
                 {totalItems > 0 && (
@@ -73,7 +91,7 @@ const Menu = () => {
 
               {usuario ? (
                 <>
-                  <Navbar.Text className="me-3">
+                  <Navbar.Text className="me-3 d-none d-lg-block">
                     Hola, {usuario.nombre} {usuario.apellidos}
                   </Navbar.Text>
                   <Nav.Link className="link-primary" onClick={cerrarSesion}>

@@ -45,7 +45,23 @@ const Landing = () => {
 
   return (
     <>
-      <h2 className="mb-4 text-center">Top 10 libros más vendidos</h2>
+      {/* Banner */}
+      <div className="banner mb-4">
+        <picture>
+          <source
+            srcSet="/src/assets/banner-desktop.png"
+            media="(min-width: 386px)"
+          />
+          <img
+            src="/src/assets/banner-mobile.png"
+            alt="Banner"
+            className="img-fluid"
+          />
+        </picture>
+      </div>
+      <hr></hr>
+
+      <h2 className="my-4 text-center">Top 10 libros más vendidos</h2>
 
       {cargando && (
         <div

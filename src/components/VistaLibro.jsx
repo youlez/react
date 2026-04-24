@@ -71,7 +71,7 @@ const VistaLibro = ({ id, modoCompleto = false, onAgregarCarrito }) => {
 
   return (
     <Row>
-      <Col md={4}>
+      <Col md={4} className="mb-4">
         {libroData.portada && (
           <img
             src={libroData.portada}

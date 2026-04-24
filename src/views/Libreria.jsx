@@ -85,7 +85,7 @@ const Libreria = () => {
 
   return (
     <>
-      <Container className="mt-4 mb-5">
+      <Container className="mb-5">
         <Row>
           <Col md={3} className="mb-4">
             <h5 className="fw-bold mb-3">Categorías</h5>
