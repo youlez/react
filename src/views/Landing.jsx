@@ -49,11 +49,11 @@ const Landing = () => {
       <div className="banner mb-4">
         <picture>
           <source
-            srcSet="/src/assets/banner-desktop.png"
+            srcSet="/assets/banner-desktop.png"
             media="(min-width: 386px)"
           />
           <img
-            src="/src/assets/banner-mobile.png"
+            src="/assets/banner-mobile.png"
             alt="Banner"
             className="img-fluid"
           />
